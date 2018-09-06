@@ -39,7 +39,7 @@ else
 end
 
 %% Determine feasible AUV surface locations
-Vg = 12;
+
 [x_AUV, y_AUV, t_d, cvx_optval, t_infeasible] = TimeOrderedFerry(Map, t, Vg);
 if cvx_optval == Inf
     warning("Surfacing optimization returned infeasible, returning shortest possible path instead.")
