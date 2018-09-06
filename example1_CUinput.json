@@ -1,0 +1,80 @@
+﻿{
+  "parameters": {
+    "ferry": {
+      "speed": 10,
+      "buffer": 500,
+      "endurance": 55
+    },
+    "commModel": {
+      "transmitPower": 5,
+      "dataDropoffRate": 2.2
+    },
+    "mission": {
+      "dataTimeliness": 360,
+      "timeEpoch": 1214489238.3
+    }
+  },
+  "gridDescription": {
+    "swCornerLat": 39.867896,
+    "swCornerLon": -135.654321,
+    "squareLength": 500,
+    "gridSquareN": 10,
+    "gridSquareE": 12
+  },
+  "rendezvous": [
+    {
+      "id": 0,
+      "auvId": 0,
+      "gridN": 2,
+      "gridE": 3,
+      "startTime": 36,
+      "endTime": 55,
+      "dataSize": 5.12
+    },
+    {
+      "id": 1,
+      "auvId": 0,
+      "gridN": 5,
+      "gridE": 3,
+      "startTime": 200,
+      "endTime": 255,
+      "dataSize": 7.58
+    },
+    {
+      "id": 2,
+      "auvId": 1,
+      "gridN": 3,
+      "gridE": 1,
+      "startTime": 55,
+      "endTime": 136,
+      "dataSize": 8.21
+    },
+    {
+      "id": 3,
+      "auvId": 1,
+      "gridN": 2,
+      "gridE": 4,
+      "startTime": 367,
+      "endTime": 453,
+      "dataSize": 1.67
+    },
+    {
+      "id": 4,
+      "auvId": 2,
+      "gridN": 3,
+      "gridE": 4,
+      "startTime": 136,
+      "endTime": 200,
+      "dataSize": 3.98
+    },
+    {
+      "id": 5,
+      "auvId": 2,
+      "gridN": 5,
+      "gridE": 1,
+      "startTime": 255,
+      "endTime": 390,
+      "dataSize": 6.72
+    }
+  ]
+}

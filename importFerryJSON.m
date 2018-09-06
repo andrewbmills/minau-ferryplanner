@@ -4,7 +4,7 @@ function [grid_size, grid_dims, rows, cols, Map, t, Vg, t_h, dataSize, ...
     fileID = fopen(filename);
     text = fread(fileID, '*char')';
     fclose(fileID);
-    text = text(4:end);
+%     text = text(4:end);
     inputArgs = jsondecode(text);
     grid_size = [inputArgs.gridDescription.gridSquareN, ...
         inputArgs.gridDescription.gridSquareE];
@@ -22,7 +22,7 @@ function [grid_size, grid_dims, rows, cols, Map, t, Vg, t_h, dataSize, ...
     y_low = grid_dims(2)*(rows-1);
     y_high = grid_dims(2)*rows;
     Map = [x_low, x_high, y_low, y_high];
-    t_h = 5; % seconds
+    t_h = 1; % seconds
     t = [[inputArgs.rendezvous.startTime]', [inputArgs.rendezvous.endTime]', ...
         t_h*ones(length(id_AUV), 1)];
 end

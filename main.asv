@@ -26,6 +26,10 @@ else
     Vg = 10; % m/s
     grid_size = [8,10]; % [rows, cols]
     grid_dims = [250, 250]; % [width, height] (meters)
+    inputArgs.gridDescription.gridSquareN = grid_size(1);
+    inputArgs.gridDescription.gridSquareE = grid_size(2);
+    inputArgs.gridDescription.squareLengthE = grid_dims(1);
+    inputArgs.gridDescription.squareLengthN = grid_dims(2);
     N = 8; % number of sub rendezvous
     t_h = 30; % time to collect data from each AUV in seconds (design variable)
     h = 100; % meters
@@ -39,12 +43,10 @@ else
 end
 
 %% Determine feasible AUV surface locations
-Vg = 12;
-[x_AUV, y_AUV, t_d, cvx_optval, t_infeasible] = TimeOrderedFerry(Map, t, Vg);
+
+[x_AUV, y_AUV, t_d, cvx_optval] = TimeOrderedFerry(Map, t, Vg);
 if cvx_optval == Inf
-    t_infeasible
-    PlotGridRoute(x_AUV, y_AUV, grid_size, grid_dims, rows, cols);
-    PlotTimingDepartures(x_AUV, y_AUV, t, Vg, t_h, t_d);
+    TimeOrderedFerry(Map, t, Vg)
     error('Surfacing problem is infeasible, please relax surface window timings');
 end
 %% Plot the results from AUV surface location optimization
@@ -60,10 +62,6 @@ PlotFerryPath(x_ferry, y_ferry, x_AUV, y_AUV, r_comm, grid_size, grid_dims, rows
 
 %% Output to JSON
 
-inputArgs.gridDescription.gridSquareN = grid_size(1);
-inputArgs.gridDescription.gridSquareE = grid_size(2);
-inputArgs.gridDescription.squareLengthE = grid_dims(1);
-inputArgs.gridDescription.squareLengthN = grid_dims(2);
 AUV = [id_AUV, x_AUV, y_AUV, [t_AUV(:,2) - t_AUV(:,1), t_AUV(:,2)]];
 ferry = [x_ferry, y_ferry, h*ones(length(x_ferry),1), t_ferry];
 filenameOut = 'example1_CUoutput.json';

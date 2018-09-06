@@ -1,4 +1,4 @@
-function [x, y, t_d, Cost, t_infeasible] = TimeOrderedFerry(Map, t, Vg)
+function [x, y, t_d, Cost, dt_inf] = TimeOrderedFerry(Map, t, Vg)
 %Takes an N by 4 map matrix containing an ordered list of rendezvous square
 %regions in 2 dimensions.  The first and second columns are the x 
 %coordinate limits and the third and fourth columns are the y coordinate
@@ -44,7 +44,7 @@ cvx_end
 
 % Save the first resultant cost
 Cost = cvx_optval;
-t_infeasible = zeros(N-1,1);
+
 % Check to see which constraints are causing an infeasibility if one exists
 if cvx_optval == Inf
     cvx_begin
@@ -69,7 +69,6 @@ if cvx_optval == Inf
         t_d <= t(:,2);
         t_d >= t(:,1) + t(:,3);
     cvx_end
-    dt_inf = dt;
     cvx_begin
         variables x(N) y(N)
         dx = A*x;
@@ -88,7 +87,8 @@ if cvx_optval == Inf
             y(i) <= Map(i,4);
         end
     cvx_end
-    t_infeasible = dt_inf - dt;
+    
 end
+dt_inf = -A*t_d - t(2:end,3) - dt;
 
 end
