@@ -42,11 +42,10 @@ end
 Vg = 12;
 [x_AUV, y_AUV, t_d, cvx_optval, t_infeasible] = TimeOrderedFerry(Map, t, Vg);
 if cvx_optval == Inf
-    t_infeasible
-    PlotGridRoute(x_AUV, y_AUV, grid_size, grid_dims, rows, cols);
-    PlotTimingDepartures(x_AUV, y_AUV, t, Vg, t_h, t_d);
-    error('Surfacing problem is infeasible, please relax surface window timings');
+    warning("Surfacing optimization returned infeasible, returning shortest possible path instead.")
+    warning("Consider widening surfacing windows or increasing ferry speed.")
 end
+
 %% Plot the results from AUV surface location optimization
 
 PlotGridRoute(x_AUV, y_AUV, grid_size, grid_dims, rows, cols);
