@@ -68,4 +68,4 @@ AUV = [id_AUV, x_AUV, y_AUV, [t_AUV(:,2) - t_AUV(:,1), t_AUV(:,2)]];
 ferry = [x_ferry, y_ferry, h*ones(length(x_ferry),1), t_ferry];
 filenameOut = 'example1_CUoutput.json';
 WriteFerryJSON(inputArgs.gridDescription, ...
-    AUV, ferry, r_comm, filenameOut);
+    AUV, ferry, r_comm, filenameOut, cvx_optval, t_infeasible);

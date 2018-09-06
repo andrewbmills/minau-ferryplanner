@@ -1,4 +1,5 @@
-function WriteFerryJSON(gridDescription, AUV, ferry, comm, filename)
+function WriteFerryJSON(gridDescription, AUV, ferry, comm, filename, ...
+    cvx_optval, t_infeasible)
 %Writes Ferry and Surfacing Algorithm outputs to a JSON file.
 % Inputs - 
 %   - gridDescription:
@@ -39,6 +40,10 @@ struct.ferryPath.departTime = ferry(:,4);
 
 % Parse comm model info
 struct.comm_radii = comm;
+
+% Optimization results
+struct.optimization.optval = cvx_optval;
+struct.optimization.infeasibilityTimes = t_infeasibile;
 
 % Write to JSON file
 text = jsonencode(struct);
