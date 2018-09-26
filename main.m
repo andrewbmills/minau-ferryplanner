@@ -3,7 +3,7 @@ clear all
 close all
 %% Read in the problem parameters from .json or randomize them
 
-readIn = 1;
+readIn = 0;
 
 % Read from file
 if readIn

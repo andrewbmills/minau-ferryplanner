@@ -17,12 +17,17 @@ function [grid_size, grid_dims, rows, cols, Map, t, Vg, t_h, dataSize, ...
     id_AUV = [inputArgs.rendezvous.auvId]';
     cols = [inputArgs.rendezvous.gridE]';
     rows = [inputArgs.rendezvous.gridN]';
-    x_low = grid_dims(1)*(cols-1);
-    x_high = grid_dims(1)*cols;
-    y_low = grid_dims(2)*(rows-1);
-    y_high = grid_dims(2)*rows;
+    x_low = grid_dims(1)*(cols);
+    x_high = grid_dims(1)*(cols+1);
+    y_low = grid_dims(2)*(rows);
+    y_high = grid_dims(2)*(rows+1);
     Map = [x_low, x_high, y_low, y_high];
-    t_h = 1; % seconds
+    
+    %% Determine harvest window timings
+    t_start = inputArgs.rendezvous.startTime;
+    t_end = inputArgs.rendezvous.endTime;
+    dt = t_end - t_start;
+    t_h = min(dt)*dataSize/max(dataSize); % ensures feasibility of timing windows
     t = [[inputArgs.rendezvous.startTime]', [inputArgs.rendezvous.endTime]', ...
         t_h*ones(length(id_AUV), 1)];
 end

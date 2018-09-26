@@ -43,7 +43,7 @@ struct.comm_radii = comm;
 
 % Optimization results
 struct.optimization.optval = cvx_optval;
-struct.optimization.infeasibilityTimes = t_infeasibile;
+struct.optimization.infeasibilityTimes = t_infeasible;
 
 % Write to JSON file
 text = jsonencode(struct);
