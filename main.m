@@ -3,15 +3,13 @@ clear all
 close all
 %% Read in the problem parameters from .json or randomize them
 
-readIn = 0;
+readIn = 1;
 
 % Read from file
 if readIn
     filenameIn = 'example_OLinput.json';
     [grid_size, grid_dims, rows, cols, Map, t, Vg, t_h, dataSize, alpha, ...
-        id_AUV] = importFerryJSON(filenameIn);
-    N = length(dataSize);
-    power = (54*10^6)*(20)^alpha*ones(N,1);
+        id_AUV, power] = importFerryJSON(filenameIn);
     h = 100;
     % Sort rendezvous windows if they are out of order
     [~,idx] = sort(t(:,1));
