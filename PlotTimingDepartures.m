@@ -11,9 +11,9 @@ for i = 1:(N-1)
     % Plot the travel and sampling intervals
     plot([t_d(i), t_d(i) + dist/Vg], [2*i, 2*i], 'bo-')
     if (t_d(i) + dist/Vg < t(i+1,1))
-        plot([t(i+1,1), t(i+1,1) + t_h], [2*i,2*i], 'mo-')
+        plot([t(i+1,1), t(i+1,1) + t_h(i+1)], [2*i,2*i], 'mo-')
     else
-        plot([t_d(i) + dist/Vg, t_d(i) + dist/Vg + t_h], [2*i,2*i], 'mo-')
+        plot([t_d(i) + dist/Vg, t_d(i) + dist/Vg + t_h(i+1)], [2*i,2*i], 'mo-')
     end
 end
 

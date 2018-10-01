@@ -17,8 +17,8 @@ plot(horiz_x, horiz_y, 'k:', vert_x, vert_y, 'k:')
 % Highlight the grid spaces that were selected in rows and cols arrays
 for i = 1:N
     % The grid spaces are colored in grey
-    rectangle('Position', [grid_dims(1)*(cols(i)-1), grid_dims(2)*...
-        (rows(i)-1), grid_dims(1), grid_dims(2)], 'FaceColor', (190/255)*[1 1 1], 'EdgeColor', 'k')
+    rectangle('Position', [grid_dims(1)*(cols(i)), grid_dims(2)*...
+        (rows(i)), grid_dims(1), grid_dims(2)], 'FaceColor', (190/255)*[1 1 1], 'EdgeColor', 'k')
 end
 
 % Plot the optimized straight line path in order

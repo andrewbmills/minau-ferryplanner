@@ -25,7 +25,7 @@ else
     grid_size = [8,10]; % [rows, cols]
     grid_dims = [250, 250]; % [width, height] (meters)
     N = 8; % number of sub rendezvous
-    t_h = 30; % time to collect data from each AUV in seconds (design variable)
+    t_h = 30*ones(N,1); % time to collect data from each AUV in seconds (design variable)
     h = 100; % meters
     alpha = 2.5;
     power = (54*10^6)*(20)^alpha*ones(N,1); % WiFi data rate is 54 Mbps, we'll assume that's at 20 meters
